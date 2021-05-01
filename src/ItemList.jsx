@@ -7,12 +7,7 @@ const ItemList = (props) => {
     <ul style={{ listStyle: 'none' }}>
       { // js
         props.todos.map((todo) => {
-          return (
-            <Item
-              todo={todo}
-              removeTodo={() => props.removeTodo(todo.id)}
-            />
-          );
+          return <Item todo={todo} />;
         })
       }
     </ul>
