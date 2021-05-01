@@ -4,7 +4,12 @@ const Item = (props) => {
   return (
     <li>
       <input type='checkbox' />
-      {props.todo}
+      <span>
+        優先度：{props.todo.priority}
+        {'　'}
+        {props.todo.content}
+      </span>
+      <button onClick={props.removeTodo}>削除</button>
     </li>
   );
 };
