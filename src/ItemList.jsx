@@ -11,6 +11,7 @@ const ItemList = (props) => {
             <Item
               todo={todo}
               removeTodo={() => props.removeTodo(todo.id)}
+              toggleChecked={props.toggleChecked}
             />
           );
         })

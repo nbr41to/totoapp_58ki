@@ -1,0 +1,13 @@
+.deleteButton {
+  background-color: aqua;
+}
+
+.contentText {
+  font-weight: bold;
+  color: navy;
+}
+.checkedText {
+  font-weight: normal;
+  text-decoration: line-through;
+  color: #999;
+}
