@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import InputForm from "./InputForm";
+import { InputForm } from "./InputForm";
 import ItemList from "./ItemList";
 import shortid from "shortid";
 
@@ -13,12 +13,19 @@ const App = () => {
     { id: '03', content: 'モンハンやる', done: false, priority: '★★★' },
     { id: '04', content: 'プログラミングやる', done: false, priority: '★☆☆' },
   ]);
+  const [inputText, setInputText] = React.useState('');
 
-  const addTodo = (addValue) => {
-    setTodos([...todos,
-    { id: shortid.generate(), content: addValue, done: false, priority: '★☆☆' }
-    ]);
+  const addTodo = (addValue, priority) => {
+    if (addValue) {
+      setTodos([...todos,
+      { id: shortid.generate(), content: addValue, done: false, priority }
+      ]);
+    } else {
+      alert('入力してください');
+    }
+    setInputText('');
   };
+
   const toggleChecked = (id) => {
     const newTodos = todos.map((todo) => {
       if (id === todo.id) {
@@ -46,8 +53,17 @@ const App = () => {
     // JSX...jsを使う場合は{}で囲う
     <div className="App">
       <h1>ToDo App</h1>
-      <InputForm addTodo={addTodo} />
-      <ItemList todos={todos} removeTodo={removeTodo} toggleChecked={toggleChecked} />
+      <InputForm
+        addTodo={addTodo}
+        inputText={inputText}
+        setInputText={setInputText}
+        hoge={'hogehoge'}
+      />
+      <ItemList
+        todos={todos}
+        removeTodo={removeTodo}
+        toggleChecked={toggleChecked}
+      />
     </div>
   );
 };

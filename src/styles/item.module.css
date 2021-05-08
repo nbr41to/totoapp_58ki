@@ -1,3 +1,5 @@
+/* CSS Modules */
+
 .deleteButton {
   background-color: aqua;
 }
@@ -6,6 +8,7 @@
   font-weight: bold;
   color: navy;
 }
+
 .checkedText {
   font-weight: normal;
   text-decoration: line-through;

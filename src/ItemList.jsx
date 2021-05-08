@@ -1,14 +1,16 @@
 import React from 'react';
 import Item from './Item';
+import styled from 'styled-components';
 
 const ItemList = (props) => {
-  console.log(props.todos);
+
   return (
-    <ul style={{ listStyle: 'none' }}>
+    <StyledItemList>
       { // js
-        props.todos.map((todo) => {
+        props.todos.map((todo, index) => {
           return (
             <Item
+              key={index}
               todo={todo}
               removeTodo={() => props.removeTodo(todo.id)}
               toggleChecked={props.toggleChecked}
@@ -16,8 +18,14 @@ const ItemList = (props) => {
           );
         })
       }
-    </ul>
+    </StyledItemList>
   );
 };
 
 export default ItemList;
+
+const StyledItemList = styled.ul`
+  border: 2px solid orange;
+  list-style: none;
+  padding: 12px;
+`;

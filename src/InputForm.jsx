@@ -2,27 +2,47 @@ import React from 'react';
 import Select from 'react-select';
 
 const options = [
-  { value: '1', label: '★☆☆' },
-  { value: '2', label: '★★☆' },
-  { value: '3', label: '★★★' }
+  { value: '★☆☆', label: '★☆☆' },
+  { value: '★★☆', label: '★★☆' },
+  { value: '★★★', label: '★★★' }
 ];
 
-const InputForm = (props) => {
-  const [inputText, setInputText] = React.useState('');
-  console.log(inputText);
+export const InputForm = ({ addTodo, inputText, setInputText, ...props }) => {
 
+  // const [inputText, setInputText] = React.useState('');
+  const [priority, setPriority] = React.useState('');
+  console.log(priority);
   return (
     <div>
       <label>やること:</label>
-      <input onChange={(e) => setInputText(e.target.value)} type='text' />
-      <select defaultValue='2'>
-        {options.map((option) => <option value={option.value} selected={option.value === '2'}>{option.label}</option>)}
+      <input
+        value={inputText}
+        onChange={(e) => setInputText(e.target.value)}
+        type='text'
+      />
+      <select
+        defaultValue={options[1].value}
+        value={priority}
+        onChange={(e) => setPriority(e.target.value)}
+      >
+        {options.map((option, index) => {
+          // console.log(option.label);
+          return (
+            <option
+              key={index}
+              value={option.value}
+              selected={option.value === '★★☆'}
+            >
+              {option.label}
+            </option>
+          );
+        })}
       </select>
       {/* <Select options={options} defaultValue={options[1]} /> */}
       <br />
-      <button onClick={() => props.addTodo(inputText)}>追加</button>
+      <button onClick={() => addTodo(inputText, priority)}>追加</button>
     </div>
   );
 };
 
-export default InputForm;
+// export default InputForm;
