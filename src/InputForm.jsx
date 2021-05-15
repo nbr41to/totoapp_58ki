@@ -1,5 +1,9 @@
 import React from 'react';
-import Select from 'react-select';
+// import Select from 'react-select';
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+import Select from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
 
 const options = [
   { value: '★☆☆', label: '★☆☆' },
@@ -14,13 +18,14 @@ export const InputForm = ({ addTodo, inputText, setInputText, ...props }) => {
   console.log(priority);
   return (
     <div>
-      <label>やること:</label>
-      <input
+      <TextField
+        type='text'
+        label="やること"
+        variant="outlined"
         value={inputText}
         onChange={(e) => setInputText(e.target.value)}
-        type='text'
       />
-      <select
+      {/* <select
         defaultValue={options[1].value}
         value={priority}
         onChange={(e) => setPriority(e.target.value)}
@@ -37,11 +42,32 @@ export const InputForm = ({ addTodo, inputText, setInputText, ...props }) => {
             </option>
           );
         })}
-      </select>
+      </select> */}
+      <Select
+        labelId="demo-simple-select-outlined-label"
+        id="demo-simple-select-outlined"
+        variant='outlined'
+        value={priority}
+        onChange={(e) => setPriority(e.target.value)}
+        label="優先度"
+        defaultValue={options[1].value}
+      >
+        <MenuItem value="">
+          <em>None</em>
+        </MenuItem>
+        {options.map((option, index) =>
+          <MenuItem key={index} value={option.value}>{option.label}</MenuItem>
+        )}
+      </Select>
       {/* <Select options={options} defaultValue={options[1]} /> */}
-      <br />
-      <button onClick={() => addTodo(inputText, priority)}>追加</button>
-    </div>
+      <Button
+        variant="outlined"
+        color="primary"
+        onClick={() => addTodo(inputText, priority)}
+      >
+        追加
+      </Button>
+    </div >
   );
 };
 
